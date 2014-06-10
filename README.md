@@ -2,4 +2,4 @@
 
 - Vim, vi, venci
 
-A collection of Vim ftplugins
+My Vim configuration files
