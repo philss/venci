@@ -114,6 +114,9 @@ nmap <S-tab> :tabprevious<CR>
 " map to make it use to use zenconding
 map! <C-Z>, <C-Y>,
 
+" Open file under cursor in another tab
+map gft <C-w>gf<CR>
+
 " BOOT
 " open a NERDTree automatically when vim starts up if no files were specified
 autocmd vimenter * if !argc() | NERDTree | endif
