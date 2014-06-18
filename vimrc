@@ -43,6 +43,8 @@ Plugin 'Shutnik/jshint2.vim'
 Plugin 'tpope/vim-dispatch'
 Plugin 'itchyny/lightline.vim'
 Plugin 'ervandew/supertab'
+Plugin 'tpope/vim-markdown'
+
 " Inception: install this repository to get ftplugins and other configurations
 Plugin 'philss/venci'
 " END PLUGINS
