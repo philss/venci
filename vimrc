@@ -44,6 +44,7 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'itchyny/lightline.vim'
 Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-markdown'
+Plugin 'scrooloose/syntastic'
 
 " Inception: install this repository to get ftplugins and other configurations
 Plugin 'philss/venci'
@@ -152,3 +153,8 @@ set clipboard=unnamed
 " copy and cut to clipboard
 vmap <C-c> :w !pbcopy<CR><CR>
 vmap <C-x> :!pbcopy<CR>
+
+" Linters - JS and SCSS
+
+let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_scss_checkers = ['scss_lint']
