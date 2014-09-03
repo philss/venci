@@ -46,6 +46,7 @@ Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-markdown'
 Plugin 'scrooloose/syntastic'
 Plugin 'Keithbsmiley/swift.vim'
+Plugin 'vim-scripts/restore_view.vim'
 
 " Inception: install this repository to get ftplugins and other configurations
 Plugin 'philss/venci'
