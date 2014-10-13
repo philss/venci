@@ -1,13 +1,10 @@
 syntax on
 
-set background=dark
+set background=light
 
 set nocompatible
 " Toggle past mode
 set pastetoggle=<F2>
-
-"Rspec command
-let g:rspec_command = "! bundle exec rspec {spec}"
 
 " Vundle - you need to install it first. Check more details: https://github.com/gmarik/Vundle.vim
 filetype off " required by vundle
@@ -144,11 +141,6 @@ command FixSpaces %s/\s\+$/
 
 " reload the file on changes
 set autoread
-
-" Rspec.vim mappings
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
 
 set clipboard=unnamed
 
