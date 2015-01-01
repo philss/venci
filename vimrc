@@ -7,7 +7,7 @@ set nocompatible
 set pastetoggle=<F2>
 
 " Rspec command
-let g:rspec_command = "! bundle exec rspec {spec}"
+let g:rspec_command = "! bundle exec rspec {spec} --color"
 
 " Vundle - you need to install it first. Check more details: https://github.com/gmarik/Vundle.vim
 filetype off " required by vundle
@@ -47,6 +47,7 @@ Plugin 'tpope/vim-markdown'
 Plugin 'scrooloose/syntastic'
 Plugin 'Keithbsmiley/swift.vim'
 Plugin 'vim-scripts/restore_view.vim'
+Plugin 'bling/vim-airline'
 
 " Inception: install this repository to get ftplugins and other configurations
 Plugin 'philss/venci'
@@ -155,3 +156,15 @@ vmap <C-x> :!pbcopy<CR>
 
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_scss_checkers = ['scss_lint']
+
+
+" Airline - status bar
+" You need to install powerline fonts in order to be able to
+" see some icons:
+"
+" $ git clone https://github.com/powerline/fonts.git && cd fonts
+" $ ./install.sh
+" (using Droid Sans Mono for Powerline)
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1

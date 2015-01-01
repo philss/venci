@@ -2,12 +2,16 @@
 
 - Vim, vi, venci
 
-My Vim configuration files
+My Vim configuration files.
 
 ## Dependencies
 
 - [Vundle](https://github.com/gmarik/Vundle.vim)
 - git
+
+Optional:
+
+- [Powerline Fonts](https://github.com/powerline/fonts) - Needed for Airline
 
 ## How to install
 
@@ -24,12 +28,12 @@ After install Vundle, you need to clone this repo:
 $ git clone https://github.com/philss/venci.git ~/.venci/
 ```
 
-And add a symbolic link of `~/.vimrc` pointing to the `vimrc` file inside the repository.
+Add a symbolic link of `~/.vimrc` pointing to the `vimrc` file inside the repository.
 You may need to remove the original `~/.vimrc` file before do that.
 
 ```
 $ ln -s /Users/your_username/.venci/vimrc ~/.vimrc
 ```
 
-Them, open vim and run `:BundleInstall`. It will take some minutes depending of your connection.
-After that, close and open your vim again. Everything should be installed.
+Them open vim and run `:PluginInstall`. It will take some minutes depending of your connection.
+After that restart your vim. Everything should be installed.
