@@ -37,3 +37,14 @@ $ ln -s /Users/your_username/.venci/vimrc ~/.vimrc
 
 Them open vim and run `:PluginInstall`. It will take some minutes depending of your connection.
 After that restart your vim. Everything should be installed.
+
+## Using neovim
+
+You can use this configuration with the [neovim](https://github.com/neovim/neovim).
+It is totally compatible.
+
+The only difference is that you need to link to the `~/.nvimrc` instead of `~/.vimrc`.
+
+```
+$ ln -s /Users/your_username/.venci/vimrc ~/.nvimrc
+```
