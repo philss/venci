@@ -1,6 +1,6 @@
 syntax on
 
-set background=light
+set background=dark
 
 set nocompatible
 " Toggle past mode
@@ -11,13 +11,12 @@ let g:rspec_command = "! bundle exec rspec {spec} --color"
 
 " Vundle - you need to install it first. Check more details: https://github.com/gmarik/Vundle.vim
 filetype off " required by vundle
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/vundle
 call vundle#begin()
 
 Plugin 'gmarik/vundle'
 
 " PLUGINS
-Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-rbenv'
@@ -49,6 +48,9 @@ Plugin 'scrooloose/syntastic'
 Plugin 'Keithbsmiley/swift.vim'
 Plugin 'vim-scripts/restore_view.vim'
 Plugin 'bling/vim-airline'
+Plugin 'tpope/vim-rake'
+Plugin 'rizzatti/dash.vim'
+Plugin 'whatyouhide/vim-gotham'
 
 " Inception: install this repository to get ftplugins and other configurations
 Plugin 'philss/venci'
@@ -60,7 +62,9 @@ filetype indent plugin on
 " Show partial commands in the last line of the screen
 set showcmd
 
-colorscheme solarized
+" NOTE: Gotham plugin requires the iterm2 gotham theme installed (or something similar
+" on linux)
+colorscheme gotham
 set t_Co=256
 
 " Enable light line
