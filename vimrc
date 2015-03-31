@@ -51,6 +51,7 @@ Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-rake'
 Plugin 'rizzatti/dash.vim'
 Plugin 'whatyouhide/vim-gotham'
+Plugin 'mxw/vim-jsx'
 
 " Inception: install this repository to get ftplugins and other configurations
 Plugin 'philss/venci'
