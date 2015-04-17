@@ -1,6 +1,7 @@
 syntax on
 
 set background=dark
+"set background=light
 
 set nocompatible
 " Toggle past mode
@@ -52,6 +53,7 @@ Plugin 'tpope/vim-rake'
 Plugin 'rizzatti/dash.vim'
 Plugin 'whatyouhide/vim-gotham'
 Plugin 'mxw/vim-jsx'
+Plugin 'altercation/vim-colors-solarized'
 
 " Inception: install this repository to get ftplugins and other configurations
 Plugin 'philss/venci'
@@ -63,13 +65,16 @@ filetype indent plugin on
 " Show partial commands in the last line of the screen
 set showcmd
 
-" NOTE: Gotham plugin requires the iterm2 gotham theme installed (or something similar
-" on linux)
-colorscheme gotham
 set t_Co=256
+colorscheme solarized
+" Toggle backgroud
+call togglebg#map("<F5>")
 
 " Enable light line
 set laststatus=2
+
+" A guide column to keep the code to a maximum of 80 chars
+set colorcolumn=80
 
 " Highlight searches (use <C-L> to temporarily turn off highlighting; see the
 " mapping of <C-L> below)
