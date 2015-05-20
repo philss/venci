@@ -1,9 +1,9 @@
 syntax on
 
-set background=dark
-"set background=light
+set background=light
 
 set nocompatible
+
 " Toggle past mode
 set pastetoggle=<F2>
 
@@ -54,7 +54,6 @@ Plugin 'rizzatti/dash.vim'
 Plugin 'whatyouhide/vim-gotham'
 Plugin 'mxw/vim-jsx'
 Plugin 'altercation/vim-colors-solarized'
-
 " Inception: install this repository to get ftplugins and other configurations
 Plugin 'philss/venci'
 " END PLUGINS
@@ -128,19 +127,13 @@ nmap <tab> :tabnext<CR>
 " Mapping control + <tab> to go to the previous tab
 nmap <S-tab> :tabprevious<CR>
 
-" map to make it use to use zenconding
-map! <C-Z>, <C-Y>,
-
 " Open file under cursor in another tab
 map gft <C-w>gf<CR>
 
-" BOOT
-" open a NERDTree automatically when vim starts up if no files were specified
-autocmd vimenter * if !argc() | NERDTree | endif
-
+" Opens XML files with xmllint
 au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
 
-" max of open tabs opened
+" Max of open tabs opened
 set tabpagemax=100
 
 " Blank spaces killer
@@ -151,31 +144,48 @@ match ExtraWhitespace /\s\+$/
 autocmd WinEnter * match ExtraWhitespace /\s\+$/
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
-" Run to clean them all
+
+" Run to clean trailing whitespace
 command FixSpaces %s/\s\+$/
 
-" reload the file on changes
+" Reload the file on changes
 set autoread
 
 set clipboard=unnamed
 
-" copy and cut to clipboard
+" Copy and cut an entire line to clipboard
 vmap <C-c> :w !pbcopy<CR><CR>
 vmap <C-x> :!pbcopy<CR>
 
-" Linters - JS and SCSS
+" Function to Increment numbers in a column.
+" Extracted from: http://vim.wikia.com/wiki/Making_a_list_of_numbers
+function! IncrementNumbersInColumn()
+  let a = line('.') - line("'<")
+  let c = virtcol("'<")
+  if a > 0
+    execute 'normal! '.c.'|'.a."\<C-a>"
+  endif
+  normal `<
+endfunction
 
+" Map the above function to CTRL + a
+vnoremap <C-a> :call IncrementNumbersInColumn()<CR>
+
+" Linters - JS, SCSS and Ruby
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_scss_checkers = ['scss_lint']
-
+"let g:syntastic_ruby_checkers = ['rubocop']
 
 " Airline - status bar
-" You need to install powerline fonts in order to be able to
-" see some icons:
-"
+" You need to install powerline fonts in order to be able to " see some icons:
 " $ git clone https://github.com/powerline/fonts.git && cd fonts
 " $ ./install.sh
 " (using Droid Sans Mono for Powerline)
-
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
+
+" Load config per project if '.vimrc.local' is present
+if filereadable(glob("./.vimrc.local"))
+  source ./.vimrc.local
+endif
+
