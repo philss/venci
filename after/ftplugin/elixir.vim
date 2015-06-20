@@ -6,5 +6,5 @@ function! RunNearestSpec()
 endfunction
 
 " Runs the tests
-map <leader>t :!mix test<CR>
+map <leader>t :Dispatch mix test<CR>
 map <leader>s :call RunNearestSpec()<CR>

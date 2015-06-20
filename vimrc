@@ -8,7 +8,7 @@ set nocompatible
 set pastetoggle=<F2>
 
 " Rspec command
-let g:rspec_command = "terminal bundle exec rspec {spec} --color"
+let g:rspec_command = "Dispatch bundle exec rspec {spec} --color"
 
 " Vundle - you need to install it first. Check more details: https://github.com/gmarik/Vundle.vim
 filetype off " required by vundle
