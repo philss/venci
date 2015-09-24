@@ -9,6 +9,7 @@ set pastetoggle=<F2>
 
 " Rspec command
 let g:rspec_command = "Dispatch bundle exec rspec {spec} --color"
+let g:rspec_runner = "os_x_iterm2"
 
 " Vundle - you need to install it first. Check more details: https://github.com/gmarik/Vundle.vim
 filetype off " required by vundle
@@ -54,6 +55,7 @@ Plugin 'rizzatti/dash.vim'
 Plugin 'whatyouhide/vim-gotham'
 Plugin 'mxw/vim-jsx'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'junegunn/goyo.vim'
 " Inception: install this repository to get ftplugins and other configurations
 Plugin 'philss/venci'
 " END PLUGINS
@@ -72,8 +74,8 @@ call togglebg#map("<F5>")
 " Enable light line
 set laststatus=2
 
-" A guide column to keep the code to a maximum of 80 chars
-set colorcolumn=80
+" A guide column to keep the code to a maximum of 100 chars
+set colorcolumn=100
 
 " Highlight searches (use <C-L> to temporarily turn off highlighting; see the
 " mapping of <C-L> below)
