@@ -1,6 +1,6 @@
 syntax on
 
-set background=dark
+set background=light
 
 set nocompatible
 
@@ -56,6 +56,8 @@ Plugin 'whatyouhide/vim-gotham'
 Plugin 'mxw/vim-jsx'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'junegunn/goyo.vim'
+Plugin 'vim-erlang/vim-erlang-runtime'
+
 " Inception: install this repository to get ftplugins and other configurations
 Plugin 'philss/venci'
 " END PLUGINS
@@ -68,6 +70,7 @@ set showcmd
 
 set t_Co=256
 colorscheme solarized
+
 " Toggle backgroud
 call togglebg#map("<F5>")
 
