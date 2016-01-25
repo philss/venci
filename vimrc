@@ -56,7 +56,6 @@ Plugin 'whatyouhide/vim-gotham'
 Plugin 'mxw/vim-jsx'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'junegunn/goyo.vim'
-Plugin 'vim-erlang/vim-erlang-runtime'
 
 " Inception: install this repository to get ftplugins and other configurations
 Plugin 'philss/venci'
