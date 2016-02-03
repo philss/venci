@@ -1,6 +1,5 @@
 syntax on
 
-set background=light
 
 set nocompatible
 
@@ -69,6 +68,15 @@ set showcmd
 
 set t_Co=256
 colorscheme solarized
+
+let openat = str2nr(system('date +%H'), 10)
+
+" Set the dark theme between 7 PM and 6 AM
+if (openat >= 19 || openat < 6)
+  set background=dark
+else
+  set background=light
+endif
 
 " Toggle backgroud
 call togglebg#map("<F5>")
