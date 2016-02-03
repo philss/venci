@@ -69,10 +69,10 @@ set showcmd
 set t_Co=256
 colorscheme solarized
 
-let openat = str2nr(system('date +%H'), 10)
+let hour = str2nr(system('date +%H'), 10)
 
 " Set the dark theme between 7 PM and 6 AM
-if (openat >= 19 || openat < 6)
+if (hour > 18 || hour < 6)
   set background=dark
 else
   set background=light
