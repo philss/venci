@@ -48,3 +48,10 @@ The only difference is that you need to link to the `~/.nvimrc` instead of `~/.v
 ```
 $ ln -s /Users/your_username/.venci/vimrc ~/.nvimrc
 ```
+
+You can still using the vim configuration with:
+
+```
+ln -s ~/.vim ~/.config/nvim
+ln -s ~/.vimrc ~/.config/nvim/init.vim
+```
