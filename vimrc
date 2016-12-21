@@ -1,21 +1,16 @@
-syntax on
+" Enable all colors in neovim
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
-
+" Disable compatibility with older vi
 set nocompatible
+filetype off
 
-" Toggle past mode
-set pastetoggle=<F2>
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.nvim/bundle/Vundle.vim
 
-" Rspec command
-let g:rspec_command = "Dispatch bundle exec rspec {spec} --color"
-let g:rspec_runner = "os_x_iterm2"
-
-" Vundle - you need to install it first. Check more details: https://github.com/gmarik/Vundle.vim
-filetype off " required by vundle
-set rtp+=~/.vim/bundle/vundle
 call vundle#begin()
 
-Plugin 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
 
 " PLUGINS
 Plugin 'scrooloose/nerdtree'
@@ -24,7 +19,6 @@ Plugin 'tpope/vim-rbenv'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-endwise'
-Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-surround'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'kien/ctrlp.vim'
@@ -37,25 +31,28 @@ Plugin 'honza/vim-snippets'
 Plugin 'carlosgaldino/elixir-snippets'
 Plugin 'godlygeek/tabular'
 Plugin 'tpope/vim-repeat'
-Plugin 'rodjek/vim-puppet'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'Shutnik/jshint2.vim'
-Plugin 'tpope/vim-dispatch'
 Plugin 'itchyny/lightline.vim'
-Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-markdown'
-Plugin 'scrooloose/syntastic'
 Plugin 'Keithbsmiley/swift.vim'
 Plugin 'vim-scripts/restore_view.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-rake'
 Plugin 'rizzatti/dash.vim'
-Plugin 'whatyouhide/vim-gotham'
 Plugin 'mxw/vim-jsx'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'junegunn/limelight.vim'
 Plugin 'junegunn/goyo.vim'
+Plugin 'nielsmadan/harlequin'
+Plugin 'scrooloose/vim-slumlord'
+Plugin 'vim-utils/vim-troll-stopper'
+Plugin 'reedes/vim-colors-pencil'
+Plugin 'neomake/neomake'
+Plugin 'mattn/emmet-vim'
+Plugin 'Shougo/deoplete.nvim'
+Plugin 'carlitux/deoplete-ternjs'
 
 " Inception: install this repository to get ftplugins and other configurations
 Plugin 'philss/venci'
@@ -64,20 +61,18 @@ Plugin 'philss/venci'
 call vundle#end()
 filetype indent plugin on
 
+" Toggle past mode
+set pastetoggle=<F2>
+
 " Show partial commands in the last line of the screen
 set showcmd
 
-set t_Co=256
+" Set terminal to 256 colors
+" set t_Co=256
+set background=dark
+
+syntax enable
 colorscheme solarized
-
-let hour = str2nr(system('date +%H'), 10)
-
-" Set the dark theme between 7 PM and 6 AM
-if (hour > 18 || hour < 6)
-  set background=dark
-else
-  set background=light
-endif
 
 " Toggle backgroud
 call togglebg#map("<F5>")
@@ -122,18 +117,21 @@ set mouse=a
 " Display line numbers on the left
 set number
 
+set undofile
+set undodir="$HOME/.VIM_UNDO_FILES"
+
 " IDENTATION -----------------------------------
 
 " Indentation settings for using 2 spaces instead of tabs.
-" " Do not change 'tabstop' from its default value of 8 with this setup.
 set ts=2 sw=2 sts=2
+set tabstop=2
 set expandtab
+
+" MAPPINGS --------------------------------------
 
 " Map <C-L> (redraw screen) to also turn off search highlighting until the
 " " next search
 nnoremap <C-L> :nohl<CR><C-L>
-
-" MAPPINGS --------------------------------------
 
 " Mapping <tab> to change navigate on tabs
 nmap <tab> :tabnext<CR>
@@ -185,9 +183,20 @@ endfunction
 vnoremap <C-a> :call IncrementNumbersInColumn()<CR>
 
 " Linters - JS, SCSS and Ruby
-let g:syntastic_javascript_checkers = ['jshint']
-let g:syntastic_scss_checkers = ['scss_lint']
-"let g:syntastic_ruby_checkers = ['rubocop']
+" let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_scss_checkers = ['scss_lint']
+" let g:syntastic_scss_scss_lint_exec = '/Users/philip/.rbenv/shims/scss-lint'
+" let g:syntastic_ruby_checkers = ['rubocop']
+" let g:syntastic_html_tidy_ignore_errors=['proprietary attribute "v-']
+
+let g:neomake_ruby_makers = ['rubocop']
+let g:neomake_scss_makers = ['scss_lint']
+let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_html_tidy_ignore_errors = ['proprietary attribute "v-']
+let g:neomake_scss_scss_lint_exec = '/Users/philip/.rbenv/shims/scss-lint'
+
+" It executes neomake every save of file
+autocmd! BufWritePost * Neomake
 
 " Airline - status bar
 " You need to install powerline fonts in order to be able to " see some icons:
@@ -197,8 +206,24 @@ let g:syntastic_scss_checkers = ['scss_lint']
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
+" Limelight
+" Color name (:help cterm-colors) or ANSI code
+let g:limelight_conceal_ctermfg = 'gray'
+let g:limelight_conceal_ctermfg = 240
+
+" Deoplete
+let g:deoplete#enable_at_startup = 1
+
+" Tern JS
+let g:tern_request_timeout = 1
+" This do disable full signature type on autocomplete
+let g:tern_show_signature_in_pum = '0'
+
+" Neovim requires Python paths
+let g:python_host_prog = '/usr/local/bin/python'
+let g:python3_host_prog = '/usr/local/bin/python3'
+
 " Load config per project if '.vimrc.local' is present
 if filereadable(glob("./.vimrc.local"))
   source ./.vimrc.local
 endif
-
