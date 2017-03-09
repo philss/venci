@@ -53,6 +53,10 @@ Plugin 'neomake/neomake'
 Plugin 'mattn/emmet-vim'
 Plugin 'Shougo/deoplete.nvim'
 Plugin 'carlitux/deoplete-ternjs'
+Plugin 'rust-lang/rust.vim'
+Plugin 'cespare/vim-toml'
+Plugin 'slashmili/alchemist.vim'
+Plugin 'powerman/vim-plugin-AnsiEsc'
 
 " Inception: install this repository to get ftplugins and other configurations
 Plugin 'philss/venci'
@@ -189,11 +193,20 @@ vnoremap <C-a> :call IncrementNumbersInColumn()<CR>
 " let g:syntastic_ruby_checkers = ['rubocop']
 " let g:syntastic_html_tidy_ignore_errors=['proprietary attribute "v-']
 
-let g:neomake_ruby_makers = ['rubocop']
+let g:neomake_ruby_makers = ['rubocop', 'reek']
 let g:neomake_scss_makers = ['scss_lint']
 let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_sml_enabled_makers = ['smlnj']
 let g:neomake_html_tidy_ignore_errors = ['proprietary attribute "v-']
 let g:neomake_scss_scss_lint_exec = '/Users/philip/.rbenv/shims/scss-lint'
+
+let g:neomake_error_sign = {'text': "✖"}
+let g:neomake_warning_sign = {'text': "⚑"}
+let g:neomake_highlight_columns = 0
+
+" Prettier linting errors
+highlight NeomakeErrorSign ctermfg=124 cterm=bold
+highlight NeomakeWarningSign ctermfg=31 cterm=bold
 
 " It executes neomake every save of file
 autocmd! BufWritePost * Neomake
