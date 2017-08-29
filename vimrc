@@ -16,14 +16,12 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-rbenv'
-Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-surround'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'kien/ctrlp.vim'
 Plugin 'thoughtbot/vim-rspec'
-Plugin 'elixir-lang/vim-elixir'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
@@ -41,7 +39,6 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-rake'
 Plugin 'rizzatti/dash.vim'
-Plugin 'mxw/vim-jsx'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'junegunn/limelight.vim'
 Plugin 'junegunn/goyo.vim'
@@ -53,10 +50,19 @@ Plugin 'neomake/neomake'
 Plugin 'mattn/emmet-vim'
 Plugin 'Shougo/deoplete.nvim'
 Plugin 'carlitux/deoplete-ternjs'
-Plugin 'rust-lang/rust.vim'
-Plugin 'cespare/vim-toml'
 Plugin 'slashmili/alchemist.vim'
 Plugin 'powerman/vim-plugin-AnsiEsc'
+Plugin 'chr4/sslsecure.vim'
+
+" Langs
+
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'elixir-lang/vim-elixir'
+Plugin 'mxw/vim-jsx'
+Plugin 'cespare/vim-toml'
+Plugin 'rust-lang/rust.vim'
+Plugin 'wlangstroth/vim-racket'
+Plugin 'ElmCast/elm-vim'
 
 " Inception: install this repository to get ftplugins and other configurations
 Plugin 'philss/venci'
@@ -193,16 +199,17 @@ vnoremap <C-a> :call IncrementNumbersInColumn()<CR>
 " let g:syntastic_ruby_checkers = ['rubocop']
 " let g:syntastic_html_tidy_ignore_errors=['proprietary attribute "v-']
 
-let g:neomake_ruby_makers = ['rubocop', 'reek']
+let g:neomake_ruby_enabled_makers = ['rubocop', 'reek']
 let g:neomake_scss_makers = ['scss_lint']
 let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_sml_enabled_makers = ['smlnj']
 let g:neomake_html_tidy_ignore_errors = ['proprietary attribute "v-']
 let g:neomake_scss_scss_lint_exec = '/Users/philip/.rbenv/shims/scss-lint'
 
-let g:neomake_error_sign = {'text': "✖"}
-let g:neomake_warning_sign = {'text': "⚑"}
-let g:neomake_highlight_columns = 0
+let g:neomake_error_sign = {'text': 'E>', 'texthl': 'ErrorMsg'}
+let g:neomake_warning_sign = {'text': 'W>', 'texthl': 'WarnMsg'}
+let g:neomake_info_sign = {'text': 'I>', 'texthl': 'NeomakeInfoSign'}
+let g:neomake_highlight_columns = 1
 
 " Prettier linting errors
 highlight NeomakeErrorSign ctermfg=124 cterm=bold
@@ -235,6 +242,10 @@ let g:tern_show_signature_in_pum = '0'
 " Neovim requires Python paths
 let g:python_host_prog = '/usr/local/bin/python'
 let g:python3_host_prog = '/usr/local/bin/python3'
+
+" Set the path as current directory. It enables search recursively by files in
+" this directory.
+set path=$PWD/**
 
 " Load config per project if '.vimrc.local' is present
 if filereadable(glob("./.vimrc.local"))
