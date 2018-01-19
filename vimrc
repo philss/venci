@@ -12,50 +12,7 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 
-" PLUGINS
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'tpope/vim-rbenv'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-endwise'
-Plugin 'tpope/vim-surround'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'kien/ctrlp.vim'
-Plugin 'thoughtbot/vim-rspec'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
-Plugin 'honza/vim-snippets'
-Plugin 'carlosgaldino/elixir-snippets'
-Plugin 'godlygeek/tabular'
-Plugin 'tpope/vim-repeat'
-Plugin 'cakebaker/scss-syntax.vim'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'itchyny/lightline.vim'
-Plugin 'tpope/vim-markdown'
-Plugin 'Keithbsmiley/swift.vim'
-Plugin 'vim-scripts/restore_view.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'tpope/vim-rake'
-Plugin 'rizzatti/dash.vim'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'junegunn/limelight.vim'
-Plugin 'junegunn/goyo.vim'
-Plugin 'nielsmadan/harlequin'
-Plugin 'scrooloose/vim-slumlord'
-Plugin 'vim-utils/vim-troll-stopper'
-Plugin 'reedes/vim-colors-pencil'
-Plugin 'neomake/neomake'
-Plugin 'mattn/emmet-vim'
-Plugin 'Shougo/deoplete.nvim'
-Plugin 'carlitux/deoplete-ternjs'
-Plugin 'slashmili/alchemist.vim'
-Plugin 'powerman/vim-plugin-AnsiEsc'
-Plugin 'chr4/sslsecure.vim'
-
 " Langs
-
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'mxw/vim-jsx'
@@ -63,6 +20,43 @@ Plugin 'cespare/vim-toml'
 Plugin 'rust-lang/rust.vim'
 Plugin 'wlangstroth/vim-racket'
 Plugin 'ElmCast/elm-vim'
+Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'tpope/vim-rake'
+Plugin 'thoughtbot/vim-rspec'
+
+" PLUGINS
+Plugin 'neomake/neomake'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'tpope/vim-rbenv'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-surround'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'godlygeek/tabular'
+Plugin 'tpope/vim-repeat'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'itchyny/lightline.vim'
+Plugin 'tpope/vim-markdown'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'junegunn/limelight.vim'
+Plugin 'junegunn/goyo.vim'
+Plugin 'vim-utils/vim-troll-stopper'
+Plugin 'Shougo/deoplete.nvim'
+Plugin 'carlitux/deoplete-ternjs'
+Plugin 'slashmili/alchemist.vim'
+"Plugin 'powerman/vim-plugin-AnsiEsc'
+Plugin 'chr4/sslsecure.vim'
+
+" ColorScheme
+Plugin 'reedes/vim-colors-pencil'
+Plugin 'nielsmadan/harlequin'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'liuchengxu/space-vim-dark'
 
 " Inception: install this repository to get ftplugins and other configurations
 Plugin 'philss/venci'
@@ -82,7 +76,9 @@ set showcmd
 set background=dark
 
 syntax enable
-colorscheme solarized
+"colorscheme solarized
+colorscheme space-vim-dark
+"hi Comment cterm=italic
 
 " Toggle backgroud
 call togglebg#map("<F5>")
@@ -133,8 +129,9 @@ set undodir="$HOME/.VIM_UNDO_FILES"
 " IDENTATION -----------------------------------
 
 " Indentation settings for using 2 spaces instead of tabs.
-set ts=2 sw=2 sts=2
+set shiftwidth=2
 set tabstop=2
+set sts=2
 set expandtab
 
 " MAPPINGS --------------------------------------
@@ -242,6 +239,9 @@ let g:tern_show_signature_in_pum = '0'
 " Neovim requires Python paths
 let g:python_host_prog = '/usr/local/bin/python'
 let g:python3_host_prog = '/usr/local/bin/python3'
+
+" Configure the ultisnips
+let g:UltiSnipsJumpForwardTrigger = '<tab>'
 
 " Set the path as current directory. It enables search recursively by files in
 " this directory.
