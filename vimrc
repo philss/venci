@@ -23,6 +23,8 @@ Plugin 'ElmCast/elm-vim'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'tpope/vim-rake'
 Plugin 'thoughtbot/vim-rspec'
+Plugin 'kylef/apiblueprint.vim'
+Plugin 'styled-components/vim-styled-components'
 
 " PLUGINS
 Plugin 'neomake/neomake'
@@ -49,8 +51,8 @@ Plugin 'vim-utils/vim-troll-stopper'
 Plugin 'Shougo/deoplete.nvim'
 Plugin 'carlitux/deoplete-ternjs'
 Plugin 'slashmili/alchemist.vim'
-"Plugin 'powerman/vim-plugin-AnsiEsc'
 Plugin 'chr4/sslsecure.vim'
+Plugin 'jremmen/vim-ripgrep'
 
 " ColorScheme
 Plugin 'reedes/vim-colors-pencil'
@@ -71,14 +73,10 @@ set pastetoggle=<F2>
 " Show partial commands in the last line of the screen
 set showcmd
 
-" Set terminal to 256 colors
-" set t_Co=256
 set background=dark
 
 syntax enable
-"colorscheme solarized
 colorscheme space-vim-dark
-"hi Comment cterm=italic
 
 " Toggle backgroud
 call togglebg#map("<F5>")
@@ -190,13 +188,7 @@ endfunction
 vnoremap <C-a> :call IncrementNumbersInColumn()<CR>
 
 " Linters - JS, SCSS and Ruby
-" let g:syntastic_javascript_checkers = ['eslint']
-" let g:syntastic_scss_checkers = ['scss_lint']
-" let g:syntastic_scss_scss_lint_exec = '/Users/philip/.rbenv/shims/scss-lint'
-" let g:syntastic_ruby_checkers = ['rubocop']
-" let g:syntastic_html_tidy_ignore_errors=['proprietary attribute "v-']
-
-let g:neomake_ruby_enabled_makers = ['rubocop', 'reek']
+let g:neomake_ruby_enabled_makers = ['rubocop']
 let g:neomake_scss_makers = ['scss_lint']
 let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_sml_enabled_makers = ['smlnj']
@@ -238,10 +230,9 @@ let g:tern_show_signature_in_pum = '0'
 
 " Neovim requires Python paths
 let g:python_host_prog = '/usr/local/bin/python'
-let g:python3_host_prog = '/usr/local/bin/python3'
 
 " Configure the ultisnips
-let g:UltiSnipsJumpForwardTrigger = '<tab>'
+let g:UltiSnipsExpandTrigger="<tab>"
 
 " Set the path as current directory. It enables search recursively by files in
 " this directory.
