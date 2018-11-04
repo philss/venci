@@ -1,71 +1,64 @@
 " Enable all colors in neovim
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+set termguicolors
 
 " Disable compatibility with older vi
 set nocompatible
 filetype off
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.nvim/bundle/Vundle.vim
+" Specify a directory for plugins
+call plug#begin('~/.local/share/nvim/plugged')
 
-call vundle#begin()
-
-Plugin 'VundleVim/Vundle.vim'
+" Make sure you use single quotes
 
 " Langs
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'elixir-lang/vim-elixir'
-Plugin 'mxw/vim-jsx'
-Plugin 'cespare/vim-toml'
-Plugin 'rust-lang/rust.vim'
-Plugin 'wlangstroth/vim-racket'
-Plugin 'ElmCast/elm-vim'
-Plugin 'cakebaker/scss-syntax.vim'
-Plugin 'tpope/vim-rake'
-Plugin 'thoughtbot/vim-rspec'
-Plugin 'kylef/apiblueprint.vim'
-Plugin 'styled-components/vim-styled-components'
+Plug 'vim-ruby/vim-ruby'
+Plug 'elixir-lang/vim-elixir'
+Plug 'mxw/vim-jsx'
+Plug 'cespare/vim-toml'
+Plug 'rust-lang/rust.vim'
+Plug 'wlangstroth/vim-racket'
+Plug 'ElmCast/elm-vim'
+Plug 'cakebaker/scss-syntax.vim'
+Plug 'tpope/vim-rake'
+Plug 'thoughtbot/vim-rspec'
+Plug 'kylef/apiblueprint.vim'
+Plug 'styled-components/vim-styled-components'
 
-" PLUGINS
-Plugin 'neomake/neomake'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'tpope/vim-rbenv'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-endwise'
-Plugin 'tpope/vim-surround'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'godlygeek/tabular'
-Plugin 'tpope/vim-repeat'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'itchyny/lightline.vim'
-Plugin 'tpope/vim-markdown'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'junegunn/limelight.vim'
-Plugin 'junegunn/goyo.vim'
-Plugin 'vim-utils/vim-troll-stopper'
-Plugin 'Shougo/deoplete.nvim'
-Plugin 'carlitux/deoplete-ternjs'
-Plugin 'slashmili/alchemist.vim'
-Plugin 'chr4/sslsecure.vim'
-Plugin 'jremmen/vim-ripgrep'
+" Plugins
+Plug 'neomake/neomake'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-surround'
+Plug 'Lokaltog/vim-easymotion'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'godlygeek/tabular'
+Plug 'tpope/vim-repeat'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'itchyny/lightline.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-utils/vim-troll-stopper'
+Plug 'Shougo/deoplete.nvim'
+Plug 'carlitux/deoplete-ternjs'
+Plug 'slashmili/alchemist.vim'
+Plug 'chr4/sslsecure.vim'
+Plug 'jremmen/vim-ripgrep'
 
 " ColorScheme
-Plugin 'reedes/vim-colors-pencil'
-Plugin 'nielsmadan/harlequin'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'liuchengxu/space-vim-dark'
+Plug 'reedes/vim-colors-pencil'
+Plug 'nielsmadan/harlequin'
+Plug 'altercation/vim-colors-solarized'
+Plug 'liuchengxu/space-vim-dark'
 
-" Inception: install this repository to get ftplugins and other configurations
-Plugin 'philss/venci'
-" END PLUGINS
+" Inception. Installs this repository to get ftplugins and other configurations
+Plug 'philss/venci'
 
-call vundle#end()
-filetype indent plugin on
+" Initialize plugin system
+call plug#end()
 
 " Toggle past mode
 set pastetoggle=<F2>
@@ -75,7 +68,6 @@ set showcmd
 
 set background=dark
 
-syntax enable
 colorscheme space-vim-dark
 
 " Toggle backgroud
@@ -193,7 +185,6 @@ let g:neomake_scss_makers = ['scss_lint']
 let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_sml_enabled_makers = ['smlnj']
 let g:neomake_html_tidy_ignore_errors = ['proprietary attribute "v-']
-let g:neomake_scss_scss_lint_exec = '/Users/philip/.rbenv/shims/scss-lint'
 
 let g:neomake_error_sign = {'text': 'E>', 'texthl': 'ErrorMsg'}
 let g:neomake_warning_sign = {'text': 'W>', 'texthl': 'WarnMsg'}
