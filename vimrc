@@ -24,6 +24,7 @@ Plug 'tpope/vim-rake'
 Plug 'thoughtbot/vim-rspec'
 Plug 'kylef/apiblueprint.vim'
 Plug 'styled-components/vim-styled-components'
+Plug 'hashivim/vim-hashicorp-tools'
 
 " Plugins
 Plug 'neomake/neomake'
@@ -42,17 +43,16 @@ Plug 'itchyny/lightline.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-utils/vim-troll-stopper'
-Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'carlitux/deoplete-ternjs'
 Plug 'slashmili/alchemist.vim'
 Plug 'chr4/sslsecure.vim'
 Plug 'jremmen/vim-ripgrep'
+Plug 'mhinz/vim-mix-format'
+Plug 'farmergreg/vim-lastplace'
 
 " ColorScheme
-Plug 'reedes/vim-colors-pencil'
-Plug 'nielsmadan/harlequin'
-Plug 'altercation/vim-colors-solarized'
-Plug 'liuchengxu/space-vim-dark'
+Plug 'morhetz/gruvbox'
 
 " Inception. Installs this repository to get ftplugins and other configurations
 Plug 'philss/venci'
@@ -68,10 +68,8 @@ set showcmd
 
 set background=dark
 
-colorscheme space-vim-dark
-
-" Toggle backgroud
-call togglebg#map("<F5>")
+let g:gruvbox_italic=1
+colorscheme gruvbox
 
 " Enable light line
 set laststatus=2
@@ -137,6 +135,10 @@ nmap <S-tab> :tabprevious<CR>
 
 " Open file under cursor in another tab
 map gft <C-w>gf<CR>
+
+" Generate ctags with <leader>ct
+set tags+=tags
+nnoremap <leader>ct :silent ! ctags -R --languages=ruby --exclude=.git --exclude=log -f tags<cr>
 
 " Opens XML files with xmllint
 au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
@@ -224,6 +226,9 @@ let g:python_host_prog = '/usr/local/bin/python'
 
 " Configure the ultisnips
 let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsSnippetsDir=$HOME.'/.config/ultisnips'
+
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/ultisnips']
 
 " Set the path as current directory. It enables search recursively by files in
 " this directory.
