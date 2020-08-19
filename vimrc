@@ -23,7 +23,6 @@ Plug 'cakebaker/scss-syntax.vim'
 Plug 'tpope/vim-rake'
 Plug 'thoughtbot/vim-rspec'
 Plug 'kylef/apiblueprint.vim'
-Plug 'styled-components/vim-styled-components'
 Plug 'hashivim/vim-hashicorp-tools'
 
 " Plugins
@@ -140,9 +139,6 @@ map gft <C-w>gf<CR>
 set tags+=tags
 nnoremap <leader>ct :silent ! ctags -R --languages=ruby --exclude=.git --exclude=log -f tags<cr>
 
-" Opens XML files with xmllint
-au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
-
 " Max of open tabs opened
 set tabpagemax=100
 
@@ -161,7 +157,7 @@ command FixSpaces %s/\s\+$/
 " Reload the file on changes
 set autoread
 
-set clipboard=unnamed
+set clipboard=unnamedplus
 
 " Copy and cut an entire line to clipboard
 vmap <C-c> :w !pbcopy<CR><CR>
