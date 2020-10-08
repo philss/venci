@@ -1,0 +1,22 @@
+snippet add_space "Add space chars in the current state" b
+defp $1(
+			 state = %State{},
+			 tstate = %TState{tokens: [%Tokenizer.Char{data: char} | tokens]}
+		 )
+		 when char in @space_chars do
+	{:ok, state, _new_node} = add_node(state, %HTree.Text{content: char})
+
+	$1(state, %{tstate | tokens: tokens})
+end
+endsnippet
+
+snippet tag_state "Add tag state handling" b
+defp $1(
+			 state = %State{},
+			 tstate = %TState{tokens: [%Tokenizer.StartTag{type: "$2"} | tokens]}
+		 ) do
+	{:ok, state, _new_node} = add_node(state, %HTree.HTMLNode{type: "$2"})
+
+	$1(state, %{tstate | tokens: tokens})
+end
+endsnippet

@@ -224,7 +224,7 @@ let g:python_host_prog = '/usr/local/bin/python'
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsSnippetsDir=$HOME.'/.config/ultisnips'
 
-let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/ultisnips']
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/ultisnips', $HOME.'/sandbox/dotfiles/vim/snippets']
 
 " Set the path as current directory. It enables search recursively by files in
 " this directory.
