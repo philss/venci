@@ -13,7 +13,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 " Langs
 Plug 'vim-ruby/vim-ruby'
-Plug 'elixir-lang/vim-elixir'
+Plug 'elixir-editors/vim-elixir'
 Plug 'mxw/vim-jsx'
 Plug 'cespare/vim-toml'
 Plug 'rust-lang/rust.vim'
@@ -21,8 +21,6 @@ Plug 'wlangstroth/vim-racket'
 Plug 'ElmCast/elm-vim'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'tpope/vim-rake'
-Plug 'thoughtbot/vim-rspec'
-Plug 'kylef/apiblueprint.vim'
 Plug 'hashivim/vim-hashicorp-tools'
 
 " Plugins
@@ -33,7 +31,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-surround'
 Plug 'Lokaltog/vim-easymotion'
-Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'godlygeek/tabular'
 Plug 'tpope/vim-repeat'
@@ -42,13 +39,14 @@ Plug 'itchyny/lightline.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-utils/vim-troll-stopper'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'carlitux/deoplete-ternjs'
-Plug 'slashmili/alchemist.vim'
 Plug 'chr4/sslsecure.vim'
 Plug 'jremmen/vim-ripgrep'
 Plug 'mhinz/vim-mix-format'
 Plug 'farmergreg/vim-lastplace'
+
+" Lang server
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
 
 " ColorScheme
 Plug 'morhetz/gruvbox'
@@ -135,10 +133,6 @@ nmap <S-tab> :tabprevious<CR>
 " Open file under cursor in another tab
 map gft <C-w>gf<CR>
 
-" Generate ctags with <leader>ct
-set tags+=tags
-nnoremap <leader>ct :silent ! ctags -R --languages=ruby --exclude=.git --exclude=log -f tags<cr>
-
 " Max of open tabs opened
 set tabpagemax=100
 
@@ -209,22 +203,8 @@ let g:airline_powerline_fonts = 1
 let g:limelight_conceal_ctermfg = 'gray'
 let g:limelight_conceal_ctermfg = 240
 
-" Deoplete
-let g:deoplete#enable_at_startup = 1
-
-" Tern JS
-let g:tern_request_timeout = 1
-" This do disable full signature type on autocomplete
-let g:tern_show_signature_in_pum = '0'
-
 " Neovim requires Python paths
 let g:python_host_prog = '/usr/local/bin/python'
-
-" Configure the ultisnips
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsSnippetsDir=$HOME.'/.config/ultisnips'
-
-let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/ultisnips', $HOME.'/sandbox/dotfiles/vim/snippets']
 
 " Set the path as current directory. It enables search recursively by files in
 " this directory.
