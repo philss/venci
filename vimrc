@@ -22,6 +22,7 @@ Plug 'ElmCast/elm-vim'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'tpope/vim-rake'
 Plug 'hashivim/vim-hashicorp-tools'
+Plug 'mracos/mermaid.vim'
 
 " Plugins
 Plug 'neomake/neomake'
@@ -43,6 +44,7 @@ Plug 'chr4/sslsecure.vim'
 Plug 'jremmen/vim-ripgrep'
 Plug 'mhinz/vim-mix-format'
 Plug 'farmergreg/vim-lastplace'
+Plug 'rstacruz/vim-gitgrep'
 
 " Lang server
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -67,6 +69,7 @@ set background=dark
 
 let g:gruvbox_italic=1
 colorscheme gruvbox
+let g:airline_theme='gruvbox'
 
 " Enable light line
 set laststatus=2
