@@ -9,8 +9,6 @@ filetype off
 " Specify a directory for plugins
 call plug#begin('~/.local/share/nvim/plugged')
 
-" Make sure you use single quotes
-
 " Langs
 Plug 'vim-ruby/vim-ruby'
 Plug 'elixir-editors/vim-elixir'
@@ -28,30 +26,32 @@ Plug 'mracos/mermaid.vim'
 Plug 'neomake/neomake'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-surround'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'honza/vim-snippets'
-Plug 'godlygeek/tabular'
 Plug 'tpope/vim-repeat'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'itchyny/lightline.vim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'vim-utils/vim-troll-stopper'
-Plug 'chr4/sslsecure.vim'
 Plug 'jremmen/vim-ripgrep'
 Plug 'mhinz/vim-mix-format'
 Plug 'farmergreg/vim-lastplace'
-Plug 'rstacruz/vim-gitgrep'
+Plug 'nvim-treesitter/nvim-treesitter'
+" Plug 'tamton-aquib/staline.nvim'
+Plug 'ray-x/guihua.lua', {'do': 'cd lua/fzy && make' }
+Plug 'ray-x/navigator.lua'
+
 
 " Lang server
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
+" watch out for Elixir LS setup:
+" https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#elixirls
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/completion-nvim'
+Plug 'glepnir/lspsaga.nvim'
 
 " ColorScheme
-Plug 'morhetz/gruvbox'
+" Plug 'morhetz/gruvbox'
+Plug 'rktjmp/lush.nvim'
+Plug 'npxbr/gruvbox.nvim'
 
 " Inception. Installs this repository to get ftplugins and other configurations
 Plug 'philss/venci'
@@ -69,10 +69,12 @@ set background=dark
 
 let g:gruvbox_italic=1
 colorscheme gruvbox
-let g:airline_theme='gruvbox'
 
 " Enable light line
 set laststatus=2
+
+" Enable buffer at status line
+set showtabline=2
 
 " A guide column to keep the code to a maximum of 100 chars
 set colorcolumn=100
@@ -193,19 +195,6 @@ highlight NeomakeWarningSign ctermfg=31 cterm=bold
 " It executes neomake every save of file
 autocmd! BufWritePost * Neomake
 
-" Airline - status bar
-" You need to install powerline fonts in order to be able to " see some icons:
-" $ git clone https://github.com/powerline/fonts.git && cd fonts
-" $ ./install.sh
-" (using Droid Sans Mono for Powerline)
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-
-" Limelight
-" Color name (:help cterm-colors) or ANSI code
-let g:limelight_conceal_ctermfg = 'gray'
-let g:limelight_conceal_ctermfg = 240
-
 " Neovim requires Python paths
 let g:python_host_prog = '/usr/local/bin/python'
 
@@ -213,7 +202,24 @@ let g:python_host_prog = '/usr/local/bin/python'
 " this directory.
 set path=$PWD/**
 
-" Load config per project if '.vimrc.local' is present
-if filereadable(glob("./.vimrc.local"))
-  source ./.vimrc.local
-endif
+" Config LangServer
+lua << EOF
+require'lspconfig'.elixirls.setup{
+  cmd = { "/home/philip/sandbox/elixir-ls/release/language_server.sh" };
+  on_attach = require'completion'.on_attach;
+  elixirLS = {
+    dialyzerEnabled = false,
+    fetchDeps = false
+  };
+}
+
+require'navigator'.setup()
+-- require('staline').setup{}
+EOF
+
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noinsert,noselect
