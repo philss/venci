@@ -32,14 +32,13 @@ Plug 'Lokaltog/vim-easymotion'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-repeat'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'jremmen/vim-ripgrep'
 Plug 'mhinz/vim-mix-format'
 Plug 'farmergreg/vim-lastplace'
 Plug 'nvim-treesitter/nvim-treesitter'
-" Plug 'tamton-aquib/staline.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'tamton-aquib/staline.nvim'
 Plug 'ray-x/guihua.lua', {'do': 'cd lua/fzy && make' }
 Plug 'ray-x/navigator.lua'
-
 
 " Lang server
 " watch out for Elixir LS setup:
@@ -213,8 +212,9 @@ require'lspconfig'.elixirls.setup{
   };
 }
 
-require'navigator'.setup()
--- require('staline').setup{}
+require'nvim-web-devicons'.setup{}
+require'navigator'.setup{}
+require'staline'.setup{}
 EOF
 
 " Use <Tab> and <S-Tab> to navigate through popup menu
