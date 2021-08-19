@@ -10,31 +10,29 @@ filetype off
 call plug#begin('~/.local/share/nvim/plugged')
 
 " Langs
-Plug 'vim-ruby/vim-ruby'
 Plug 'elixir-editors/vim-elixir'
-Plug 'mxw/vim-jsx'
+Plug 'vim-ruby/vim-ruby'
 Plug 'cespare/vim-toml'
 Plug 'rust-lang/rust.vim'
 Plug 'wlangstroth/vim-racket'
 Plug 'ElmCast/elm-vim'
-Plug 'cakebaker/scss-syntax.vim'
-Plug 'tpope/vim-rake'
 Plug 'hashivim/vim-hashicorp-tools'
 Plug 'mracos/mermaid.vim'
 
 " Plugins
+Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'neomake/neomake'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'honza/vim-snippets'
-Plug 'tpope/vim-repeat'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'mhinz/vim-mix-format'
 Plug 'farmergreg/vim-lastplace'
-Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'tamton-aquib/staline.nvim'
 Plug 'ray-x/guihua.lua', {'do': 'cd lua/fzy && make' }
@@ -221,5 +219,9 @@ EOF
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
+" Show hover doc
+nnoremap <silent> K <cmd>lua require('lspsaga.hover').render_hover_doc()<CR>
+
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect
+"set completeopt=noinsert,noselect
