@@ -10,7 +10,6 @@ filetype off
 call plug#begin('~/.local/share/nvim/plugged')
 
 " Langs
-Plug 'elixir-editors/vim-elixir'
 Plug 'vim-ruby/vim-ruby'
 Plug 'cespare/vim-toml'
 Plug 'rust-lang/rust.vim'
@@ -20,10 +19,10 @@ Plug 'hashivim/vim-hashicorp-tools'
 Plug 'mracos/mermaid.vim'
 
 " Plugins
-Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate' }
+Plug 'nvim-treesitter/nvim-treesitter-refactor'
 Plug 'neomake/neomake'
 Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
@@ -46,9 +45,9 @@ Plug 'nvim-lua/completion-nvim'
 Plug 'glepnir/lspsaga.nvim'
 
 " ColorScheme
-" Plug 'morhetz/gruvbox'
 Plug 'rktjmp/lush.nvim'
-Plug 'npxbr/gruvbox.nvim'
+Plug 'ellisonleao/gruvbox.nvim'
+Plug 'savq/melange'
 
 " Inception. Installs this repository to get ftplugins and other configurations
 Plug 'philss/venci'
@@ -159,20 +158,6 @@ set clipboard=unnamedplus
 vmap <C-c> :w !pbcopy<CR><CR>
 vmap <C-x> :!pbcopy<CR>
 
-" Function to Increment numbers in a column.
-" Extracted from: http://vim.wikia.com/wiki/Making_a_list_of_numbers
-function! IncrementNumbersInColumn()
-  let a = line('.') - line("'<")
-  let c = virtcol("'<")
-  if a > 0
-    execute 'normal! '.c.'|'.a."\<C-a>"
-  endif
-  normal `<
-endfunction
-
-" Map the above function to CTRL + a
-vnoremap <C-a> :call IncrementNumbersInColumn()<CR>
-
 " Linters - JS, SCSS and Ruby
 let g:neomake_ruby_enabled_makers = ['rubocop']
 let g:neomake_scss_makers = ['scss_lint']
@@ -201,9 +186,27 @@ set path=$PWD/**
 
 " Config LangServer
 lua << EOF
+local custom_attach = function(client, bufnr)
+  -- Helper functions
+  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+  --Enable completion triggered by <c-x><c-o>
+  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  -- Mappings.
+  local opts = { noremap=true, silent=true }
+
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+
+  require'completion'.on_attach();
+end
+
 require'lspconfig'.elixirls.setup{
   cmd = { "/home/philip/sandbox/elixir-ls/release/language_server.sh" };
-  on_attach = require'completion'.on_attach;
+  on_attach = custom_attach;
   elixirLS = {
     dialyzerEnabled = false,
     fetchDeps = false
@@ -213,6 +216,17 @@ require'lspconfig'.elixirls.setup{
 require'nvim-web-devicons'.setup{}
 require'navigator'.setup{}
 require'staline'.setup{}
+
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
 EOF
 
 " Use <Tab> and <S-Tab> to navigate through popup menu
@@ -224,4 +238,3 @@ nnoremap <silent> K <cmd>lua require('lspsaga.hover').render_hover_doc()<CR>
 
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect
-"set completeopt=noinsert,noselect
