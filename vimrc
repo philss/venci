@@ -28,7 +28,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'Lokaltog/vim-easymotion'
-Plug 'honza/vim-snippets'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'mhinz/vim-mix-format'
 Plug 'farmergreg/vim-lastplace'
@@ -41,8 +40,14 @@ Plug 'ray-x/navigator.lua'
 " watch out for Elixir LS setup:
 " https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#elixirls
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim'
 Plug 'glepnir/lspsaga.nvim'
+
+" Completion
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
+Plug 'nvim-lua/completion-nvim'
+Plug 'nvim-treesitter/completion-treesitter'
+Plug 'rafamadriz/friendly-snippets'
 
 " ColorScheme
 Plug 'rktjmp/lush.nvim'
@@ -183,6 +188,10 @@ let g:python_host_prog = '/usr/local/bin/python'
 " Set the path as current directory. It enables search recursively by files in
 " this directory.
 set path=$PWD/**
+
+" Completion integration with snippets
+let g:completion_enable_snippet = 'vim-vsnip'
+let g:completion_timer_cycle = 200
 
 " Config LangServer
 lua << EOF
