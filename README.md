@@ -1,5 +1,7 @@
 # Venci
 
+🟡 **RETIRED**: this repository was retired in favor of [my dotfiles one](https://github.com/philss/dotfiles).
+
 - Vim, vi, venci
 
 My [neovim](https://neovim.io/) configuration files.
